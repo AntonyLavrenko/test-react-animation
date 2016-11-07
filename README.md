@@ -1,22 +1,18 @@
-# tsc-react-gulp-example
+# React with TypeScript and some types of animations
 Example to compile React JSX with TypeScript
 
-# Build
+# Build and Run application
 
 ```sh
 npm install
-gulp bundle
+npm run start
 ```
 
 The above task creates `dist/bundle.js`.
 
 
-# Run
+# Application was create WebServer
 
 ```sh
-cd dist
-npm install -g http-server
-http-server -p 3000
+Local: http://localhost:8001
 ```
-
-And go to `localhost:3000/index.html` in your browser.
