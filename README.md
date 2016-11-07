@@ -1,5 +1,5 @@
 # React with TypeScript and some types of animations
-Example to compile React JSX with TypeScript
+Examples animations to react
 
 # Build and Run application
 
@@ -7,8 +7,6 @@ Example to compile React JSX with TypeScript
 npm install
 npm run start
 ```
-
-The above task creates `dist/bundle.js`.
 
 
 # Application was create WebServer
