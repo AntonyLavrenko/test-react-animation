@@ -1,59 +1,98 @@
 {
-  "rules": {
-    "class-name": true,
-    "curly": true,
-    "eofline": false,
-    "forin": true,
-    "indent": [
-      true,
-      4
-    ],
-    "label-position": true,
-    "label-undefined": true,
-    "max-line-length": [
-      true,
-      140
-    ],
-    "no-arg": true,
-    "no-bitwise": true,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
-    "no-construct": true,
-    "no-debugger": true,
-    "no-duplicate-key": true,
-    "no-duplicate-variable": true,
-    "no-empty": false,
-    "no-eval": true,
-    "no-string-literal": false,
-    "no-trailing-whitespace": true,
-    "no-unused-variable": false,
-    "no-unreachable": true,
-    "no-use-before-declare": true,
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-catch",
-      "check-else"
-    ],
-    "radix": true,
-    "semicolon": true,
-    "triple-equals": [
-      true,
-      "allow-null-check"
-    ],
-    "variable-name": false,
-    "whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator"
-    ]
-  }
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "call-signature": {
+          "type": "string",
+          "enum": [
+            "nospace",
+            "onespace",
+            "space"
+          ]
+        },
+        "index-signature": {
+          "type": "string",
+          "enum": [
+            "nospace",
+            "onespace",
+            "space"
+          ]
+        },
+        "parameter": {
+          "type": "string",
+          "enum": [
+            "nospace",
+            "onespace",
+            "space"
+          ]
+        },
+        "property-declaration": {
+          "type": "string",
+          "enum": [
+            "nospace",
+            "onespace",
+            "space"
+          ]
+        },
+        "variable-declaration": {
+          "type": "string",
+          "enum": [
+            "nospace",
+            "onespace",
+            "space"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "call-signature": {
+          "type": "string",
+          "enum": [
+            "nospace",
+            "onespace",
+            "space"
+          ]
+        },
+        "index-signature": {
+          "type": "string",
+          "enum": [
+            "nospace",
+            "onespace",
+            "space"
+          ]
+        },
+        "parameter": {
+          "type": "string",
+          "enum": [
+            "nospace",
+            "onespace",
+            "space"
+          ]
+        },
+        "property-declaration": {
+          "type": "string",
+          "enum": [
+            "nospace",
+            "onespace",
+            "space"
+          ]
+        },
+        "variable-declaration": {
+          "type": "string",
+          "enum": [
+            "nospace",
+            "onespace",
+            "space"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  ],
+  "additionalItems": false
 }
