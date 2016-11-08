@@ -1,10 +1,11 @@
 "use strict";
 
 const gulp          = require("gulp");
+var concatCss       = require('gulp-concat-css');
 const del           = require("del");
-const ts           = require("gulp-typescript");
+const ts            = require("gulp-typescript");
 const sourcemaps    = require('gulp-sourcemaps');
-const project     = ts.createProject("tsconfig.json");
+const project       = ts.createProject("tsconfig.json");
 const browserify    = require('browserify');
 const source        = require('vinyl-source-stream');
 const tslint        = require('gulp-tslint');
@@ -59,9 +60,14 @@ gulp.task('sass', function () {
     return gulp.src("src/**/*.sass")
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest("dist/css"));
 });
 
+gulp.task('concatCss', function () {
+    return gulp.src('dist/css/**/*.css')
+        .pipe(concatCss("style.css"))
+        .pipe(gulp.dest('dist/'));
+});
 
 gulp.task('clean', function (done) {
     del(['.tmp'], done.bind(this));
@@ -87,7 +93,7 @@ gulp.task('watch', function () {
         console.log('Resource file ' + e.path + ' has been changed. Updating.');
     });
 
-    gulp.watch(["src/**/*.sass"], ['sass']).on('change', function (e) {
+    gulp.watch(["src/**/*.sass"], ['sass','concatCss']).on('change', function (e) {
         console.log('Resource file ' + e.path + ' has been changed. Updating.');
     });
 });
@@ -125,6 +131,6 @@ gulp.task("config", () => {
 /**
  * Build the project.
  */
-gulp.task("build", ['libs', 'config','compile', 'sass',/*'bundle', */'through', 'watch'], () => {
+gulp.task("build", ['libs', 'config','compile', 'sass', 'concatCss',/*'bundle', */'through', 'watch'], () => {
     console.log("Building the project ...");
 });

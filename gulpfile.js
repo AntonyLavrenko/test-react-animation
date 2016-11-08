@@ -1,5 +1,6 @@
 "use strict";
 var gulp = require("gulp");
+var concatCss = require('gulp-concat-css');
 var del = require("del");
 var ts = require("gulp-typescript");
 var sourcemaps = require('gulp-sourcemaps');
@@ -51,7 +52,12 @@ gulp.task('sass', function () {
     return gulp.src("src/**/*.sass")
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest("dist/css"));
+});
+gulp.task('concatCss', function () {
+    return gulp.src('dist/css/**/*.css')
+        .pipe(concatCss("style.css"))
+        .pipe(gulp.dest('dist/'));
 });
 gulp.task('clean', function (done) {
     del(['.tmp'], done.bind(this));
@@ -72,7 +78,7 @@ gulp.task('watch', function () {
     gulp.watch(["src/**/*.html"], ['through']).on('change', function (e) {
         console.log('Resource file ' + e.path + ' has been changed. Updating.');
     });
-    gulp.watch(["src/**/*.sass"], ['sass']).on('change', function (e) {
+    gulp.watch(["src/**/*.sass"], ['sass', 'concatCss']).on('change', function (e) {
         console.log('Resource file ' + e.path + ' has been changed. Updating.');
     });
 });
@@ -106,7 +112,7 @@ gulp.task("config", function () {
 /**
  * Build the project.
  */
-gulp.task("build", ['libs', 'config', 'compile', 'sass', 'through', 'watch'], function () {
+gulp.task("build", ['libs', 'config', 'compile', 'sass', 'concatCss', 'through', 'watch'], function () {
     console.log("Building the project ...");
 });
 //# sourceMappingURL=gulpfile.js.map
