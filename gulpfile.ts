@@ -63,6 +63,11 @@ gulp.task('sass', function () {
         .pipe(gulp.dest("dist/css"));
 });
 
+gulp.task('cloneCss', function () {
+    return gulp.src('src/**/*.css')
+        .pipe(gulp.dest('dist/cssLib'));
+});
+
 gulp.task('concatCss', function () {
     return gulp.src('dist/css/**/*.css')
         .pipe(concatCss("style.css"))
@@ -70,15 +75,9 @@ gulp.task('concatCss', function () {
 });
 
 gulp.task('clean', function (done) {
-    del(['.tmp'], done.bind(this));
+    del(['dist'], done.bind(this));
 });
 
-/**
- * Remove build directory.
- */
-gulp.task('clean', (cb) => {
-    return del(["build"], cb);
-});
 
 /**
  * Watch for changes in TypeScript, HTML and CSS files.
@@ -111,7 +110,9 @@ gulp.task("libs", () => {
             'zone.js/dist/**',
             'bootstrap/dist/**/**',
             'jquery/dist/**',
-            'react/dist/react.min.js',
+            'react/dist/*',
+            'react-dom/dist/*',
+            'gsap/src/minified/*',
             '../systemjs.config.js'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("dist/lib"));
@@ -131,6 +132,6 @@ gulp.task("config", () => {
 /**
  * Build the project.
  */
-gulp.task("build", ['libs', 'config','compile', 'sass', 'concatCss',/*'bundle', */'through', 'watch'], () => {
+gulp.task("build", ['libs', 'config','compile', 'sass', 'cloneCss', 'concatCss',/*'bundle', */'through', 'watch'], () => {
     console.log("Building the project ...");
 });

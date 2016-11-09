@@ -12,16 +12,17 @@
             app: 'app',
             // other libraries
             'rxjs': 'npm:rxjs',
-            'react': 'npm:react/dist/react.min.js',
-            'react-dom': 'npm:react/dist/react.min.js'
+            'react': 'npm:react/dist/react.js',
+            'react-dom': 'npm:react-dom/dist/react-dom.js',
+            'react-with-addons': 'npm:react/dist/react-with-addons.js',
+
+            'TweenMax': 'npm:gsap/src/minified/TweenMax.min.js',
+            'TimelineMax': 'npm:gsap/src/minified/TimelineMax.min.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
             app: {
                 main: './bootstrap.js',
-                defaultExtension: 'js'
-            },
-            rxjs: {
                 defaultExtension: 'js'
             }
         }

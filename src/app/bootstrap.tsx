@@ -1,14 +1,20 @@
 /// <reference path="../../typings/react/react.d.ts" />
 /// <reference path="../../typings/react/react-dom.d.ts" />
 
+/// <reference path="elements/element.tsx" />
+
 import * as React from "react";
-import ReactDOM from 'react-dom';
+import * as ReactAddons from "react-with-addons";
+import * as ReactDOM from "react-dom";
+
+const { TransitionGroup } = ReactAddons.addons;
 
 import * as buttons from "./buttons/button";
+import {Element} from "./elements/element";
 
 interface AppProps {}
 interface AppState {
-    top: number;
+    state: number;
 }
 
 const Button = buttons.Buttons.Button;
@@ -22,25 +28,26 @@ class Application extends React.Component<AppProps, AppState> {
         super(props, states);
 
         this.state = {
-            top: 0
+            index: 0
         }
 
     }
 
-    onClick(){console.log(1);
-        this.setState({top: this.state.top + 10});
+    onClick(){
+        this.setState({index: this.state.index + 1});
     }
 
     render() {
 
-        const style = {
-            "margin-top": this.state.top
-        };
-
         return <div>
-            <h1 style={style}>Hello, ES6 and React 0.13!</h1>
+            <TransitionGroup>
+                <Element active={(this.state.index < 1)} transformX={0} transformY={-100}>Hello, </Element>
+                <Element active={(this.state.index < 2)} transformX={200} transformY={-200} transformRotate={30} >ES6 and</Element>
+                <Element active={(this.state.index < 3)} transformX={-300} transformY={100} transformRotate={-90}>React 0.13!</Element>
+            </TransitionGroup>
+
             <p>
-                <Button color="#000" onClick={this.onClick.bind(this)}>dsdsdsd</Button>
+                <Button color="#000" onClick={this.onClick.bind(this)}>Show animation {this.state.index + 1}</Button>
             </p>
         </div>;
     }
@@ -49,4 +56,4 @@ class Application extends React.Component<AppProps, AppState> {
 /*
  * Render the above component into the div#app
  */
-ReactDOM.render(<Application />, document.getElementById('app'));
+React.render(<Application />, document.getElementById('app'));

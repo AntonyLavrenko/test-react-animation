@@ -21,11 +21,15 @@ export namespace Buttons {
      */
     export class Button extends React.Component<ButtonProperties, ButtonState> {
 
+        private btnClass: string;
+
         constructor(props: ButtonProperties, context: any){
             super(props, context);
 
+            this.btnClass = "ui primary button";
+
             this.state = {
-                classes : this.props.className ? `button ${this.props.className}` : "button"
+                classes : this.btnClass + (this.props.className ? this.props.className : "")
             };
         }
 
@@ -95,17 +99,12 @@ export namespace Buttons {
 
             const {className, color, top, left, children} = this.props;
 
-            let buttonStyle = {
-                color: color
-            };
-
             return <button
                 className={this.state.classes}
                 onMouseOver={this.onMouseOver.bind(this)}
                 onMouseOut={this.onMouseOut.bind(this)}
                 onMouseUp={this.onMouseUp.bind(this)}
-                onMouseDown={this.onMouseDown.bind(this)}
-                style={buttonStyle}>
+                onMouseDown={this.onMouseDown.bind(this)}>
                 {children}
             </button>;
         }
